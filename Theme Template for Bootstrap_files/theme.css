@@ -1,8 +1,11 @@
 body {
   padding-top: 70px;
   padding-bottom: 30px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
-
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -15,4 +18,13 @@ body {
 
 .theme-showcase .navbar .container {
   width: auto;
+}
+
+.page-header{
+	font-size: 20px;
+	text-align: left;
+	font-family: '나눔고딕';
+}
+.checkbox-inline{
+	font-size: 12px;
 }
