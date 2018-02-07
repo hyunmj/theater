@@ -152,12 +152,19 @@ body {
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+  .input-scope{
+    display:block;
+  }
 }
+
 
 @media (min-width: 992px) {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 992px;
+  }
+  .input-scope{
+    display:inline;
   }
 }

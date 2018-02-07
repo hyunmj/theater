@@ -28,6 +28,27 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+      .input-location{
+        margin:10px;
+      }
+      .input-transportation{
+        margin:10px;
+        margin-right:5px;
+      }
+      .input-min{
+        margin:10px;
+        margin-left:0;
+      }
+      .input-scope{
+        margin:10px;
+        margin-right:5px;
+      }
+      select{
+        display: inline;
+      }
+
+    </style>
   </head>
 
   <body role="document">
@@ -52,15 +73,15 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
 
       <form class="form-inline">
-        <span class="form-group">
-          <label for="myaddress">
-            <span><strong>내 위치</strong></label></span>
-          <input type="text" class="form-control" name="myaddress"id="myaddress" placeholder="위치 입력" style="width :260px;">
+        <span class="input-location">
+          <span><label><strong>내 위치</strong></label></span>
+          <input type="text" class="form-control" name="myaddress"id="myaddress" placeholder="위치 입력">
         </span>
 
-        <span class="form-group2">
+        <span class="input-scope">
+        <span class='input-transportation'>
         <label> <strong>범위 설정 </strong></label>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" display=''>
 
           <label class="btn btn-primary active">
             <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 도보
@@ -72,18 +93,21 @@
             <input type="radio" name="options" id="option3" autocomplete="off"> 자동차
           </label>
         </div>
-        <div class="form-group">
-          <select class="form-control" id="exampleSelect1" name='min'style="width:70px">
+      </span>
+
+        <span class="input-min">
+          <select class="form-control" id="exampleSelect1" name='min'>
             <option value='10'>10</option>
             <option value='20'>20</option>
             <option value='30'>30</option>
             <option value='+'>30분 이상</option>
           </select>
           <label for="exampleSelect1">분 이내</label>
-        </div>
-      </span>
+        </span>
+    </span>
 
-      <input type="submit" class="btn btn-primary"  value="영화 몇시에 볼까!">
+      <input type="submit" class="btn btn-primary" value="영화 몇시에 볼까!">
+
     </form>
 
 
