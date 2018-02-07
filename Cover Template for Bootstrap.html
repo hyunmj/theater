@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0037)http://bootstrapk.com/examples/cover/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -26,6 +26,11 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./Theme Template for Bootstrap_files/ie-emulation-modes-warning.js.다운로드"></script>
+
   </head>
 
   <body>
@@ -36,18 +41,33 @@
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">영화 몇시에 볼까?</h3>
-              
-            </div>
-          </div>
-
           <div class="inner cover">
-            <h1 class="cover-heading">영화 시간표를 비교하세요.</h1>
-            <p class="lead">가까운 영화관의 영화 시간표를 한 눈에~</p>
+            <h1 class="cover-heading"><a href="http://localhost/index.php">영화 몇시에 볼까?<br /></a></h1>
+            <p class="lead" style="padding-bottom: 50px;padding-top: 30px;">가까운 거리에 있는 영화 시간표를 보여주는 웹페이지입니다..<br /></p>
             <p class="lead">
-              <a href="http://bootstrapk.com/examples/cover/#" class="btn btn-lg btn-default">Learn more</a>
+              <form class="form-inline">
+                <div class="form-group">
+                  <label for="myaddress"><strong>내 위치</strong></label>
+                  <input type="text" class="form-control" id="exampleInputName2" placeholder="위치 입력" style="width :260px;">
+                </div>
+                <div class="form-group">
+                  <label for="findway" style="padding-left: 30px;"><strong>거리 지정</strong></label>
+                  <button type="button" class="btn btn-default">도보</button>
+                  <button type="button" class="btn btn-primary">대중교통</button>
+                  <button type="button" class="btn btn-default">자동차</button>
+                  <div class="dropdown theme-dropdown clearfix">
+                    <a id="dropdownMenu1" href="http://bootstrapk.com/examples/theme/#" class="sr-only dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                      <li class="active" role="presentation"><a role="menuitem" tabindex="-1" href="http://bootstrapk.com/examples/theme/#">Action</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="http://bootstrapk.com/examples/theme/#">Another action</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="http://bootstrapk.com/examples/theme/#">Something else here</a></li>
+                      <li role="presentation" class="divider"></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="http://bootstrapk.com/examples/theme/#">Separated link</a></li>
+                    </ul>
+                  </div>
+                </div>
+           <button type="button" class="btn btn-primary" style="height : 50px; margin-top: 50px;">영화 몇시에 볼까!</button>
+              </form>
             </p>
           </div>
 
@@ -70,6 +90,6 @@
     <script src="./Cover Template for Bootstrap_files/bootstrap.min.js.다운로드"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./Cover Template for Bootstrap_files/ie10-viewport-bug-workaround.js.다운로드"></script>
-
+  
 
 </body></html>
