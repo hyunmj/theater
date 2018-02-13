@@ -3,13 +3,14 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="http://bootstrapk.com/favicon.ico">
 
     <title>영화 몇시에 볼까?</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=X0ZVKxjsX5209DVbcpxo"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="./Cover Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
@@ -31,29 +32,6 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="./Theme Template for Bootstrap_files/ie-emulation-modes-warning.js.다운로드"></script>
 
-    <style>
-      .input-location{
-        margin:10px;
-      }
-      .input-transportation{
-        margin:10px;
-        margin-right:5px;
-      }
-      .input-min{
-        margin:10px;
-        margin-left:0;
-      }
-      .input-scope{
-        margin:10px;
-        margin-right:5px;
-      }
-      select{
-        display: inline;
-      }
-
-    </style>
-
-
   </head>
 
   <body>
@@ -66,51 +44,94 @@
 
           <div class="inner cover">
             <h1 class="cover-heading"><a href="http://localhost/index.php">영화 몇시에 볼까?<br /></a></h1>
-            <p class="lead" style="padding-bottom: 50px;padding-top: 30px;">가까운 거리에 있는 영화 시간표를 보여주는 웹페이지입니다..<br /></p>
+            <p class="lead" style="padding-bottom: 50px;padding-top: 30px;">가까운 거리에 있는 영화 시간표를 보여주는 웹페이지입니다.<br /></p>
             <p class="lead">
               <form class="form-inline">
-                <span class="input-location">
-                  <span><label><strong>내 위치</strong></label></span>
-                  <input type="text" class="form-control" name="myaddress"id="myaddress" placeholder="위치 입력">
-                </span>
-
-                <span class="input-scope">
-                <span class='input-transportation'>
-                <label> <strong>범위 설정 </strong></label>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons" display=''>
-
-                  <label class="btn btn-primary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 도보
+                <div class="form-group" >
+                  <label for="myaddress">
+                    <strong>내 위치</strong>
+                    <input type="text" class="form-control" name="myaddress" id="myaddress" placeholder="위치 입력" style="width :260px;">
                   </label>
-                  <label class="btn btn-primary">
-                    <input type="radio" name="options" id="option2" autocomplete="off"> 대중교통
-                  </label>
-                  <label class="btn btn-primary">
-                    <input type="radio" name="options" id="option3" autocomplete="off"> 자동차
-                  </label>
-                </div>
-              </span>
+                  <div id="map" style="width:100%; height:400px;"></div>
 
-                <span class="input-min">
-                  <select class="form-control" id="exampleSelect1" name='min'>
-                    <option value='10'>10</option>
-                    <option value='20'>20</option>
-                    <option value='30'>30</option>
-                    <option value='+'>30분 이상</option>
-                  </select>
-                  <label for="exampleSelect1">분 이내</label>
-                </span>
-            </span>
-            <p>
-              <input type="submit" class="btn btn-primary" style="height : 50px; margin-top: 50px;" value="영화 몇시에 볼까!">
-            </p>
+                  <script>
+                  var mapOptions = {
+                    center: new naver.maps.LatLng(37.3595704, 127.105399),
+                    zoom: 10
+                  };
+
+                  var map = new naver.maps.Map('map', mapOptions);
+
+                  var markerOptions = {
+                    position: new naver.maps.LatLng(37.3595704, 127.105399),
+                    map: map
+                  };
+
+                  var marker = new naver.maps.Marker(markerOptions);
+
+                  var infowindow = new naver.maps.InfoWindow();
+
+
+                  naver.maps.Event.addListener(map, 'click', function(e) {
+                    marker.setPosition(e.latlng);
+                    map.panTo(e.latlng, 0.1 );
+                  });
+
+                  function onSuccessGeolocation(position) {
+                      var location = new naver.maps.LatLng(position.coords.latitude,
+                                                           position.coords.longitude);
+
+                      map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+                      marker.setPosition(location);
+                  }
+
+                  function onErrorGeolocation() {
+                      var center = map.getCenter();
+
+                      infowindow.setContent('<div style="padding:20px;">' +
+                          '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>'+ "latitude: "+ center.lat() +"<br />longitude: "+ center.lng() +'</div>');
+
+                      infowindow.open(map, center);
+                  }
+
+
+                  if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+                  } else {
+
+                      alert('Geolocation not supported');
+                  }
+
+
+                  </script>
+
+                  <strong>범위 설정 </strong>
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 도보
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="options" id="option2" autocomplete="off"> 대중교통
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="options" id="option3" autocomplete="off"> 자동차
+                    </label>
+                  </div>
+                    <select class="form-control" id="exampleSelect1" name="min" style="width:110px;">
+                      <option value='10'>10</option>
+                      <option value='20'>20</option>
+                      <option value='30'>30</option>
+                      <option value='+'>30분 이상</option>
+                    </select>
+                    <strong> 분 이내 </strong>
+                  </div>
               </form>
-
-
-                </div>
-
+            </p>
+              <input type="submit" class="btn btn-primary" style="height : 50px; margin-top: 50px;" value="영화보러 가자!">
 
           </div>
+
+        </div>
 
           <div class="mastfoot">
             <div class="inner">
